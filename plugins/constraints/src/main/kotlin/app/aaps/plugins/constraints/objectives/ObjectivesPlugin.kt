@@ -27,6 +27,7 @@ import app.aaps.plugins.constraints.objectives.objectives.Objective5
 import app.aaps.plugins.constraints.objectives.objectives.Objective6
 import app.aaps.plugins.constraints.objectives.objectives.Objective7
 import app.aaps.plugins.constraints.objectives.objectives.Objective9
+import app.aaps.plugins.constraints.objectives.objectives.SimpleExamObjective
 import dagger.android.HasAndroidInjector
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -56,17 +57,7 @@ class ObjectivesPlugin @Inject constructor(
 
     private fun setupObjectives() {
         objectives.clear()
-        objectives.add(Objective0(injector))
-        objectives.add(Objective1(injector))
-        objectives.add(Objective2(injector))
-        objectives.add(Objective3(injector))
-        objectives.add(Objective4(injector))
-        objectives.add(Objective5(injector))
-        objectives.add(Objective6(injector))
-        objectives.add(Objective7(injector))
-        objectives.add(Objective9(injector))
-        objectives.add(Objective10(injector))
-        // edit companion object if you remove/add Objective
+        objectives.add(SimpleExamObjective(injector))
     }
 
     fun reset() {
@@ -98,32 +89,32 @@ class ObjectivesPlugin @Inject constructor(
      * Constraints interface
      */
     override fun isLoopInvocationAllowed(value: Constraint<Boolean>): Constraint<Boolean> {
-        if (!objectives[FIRST_OBJECTIVE].isStarted)
-            value.set(false, rh.gs(R.string.objectivenotstarted, FIRST_OBJECTIVE + 1), this)
+        if (!objectives[0].isStarted)
+            value.set(false, rh.gs(R.string.objectivenotstarted, 1), this)
         return value
     }
 
     override fun isLgsAllowed(value: Constraint<Boolean>): Constraint<Boolean> {
-        if (!objectives[MAXBASAL_OBJECTIVE].isStarted)
-            value.set(false, rh.gs(R.string.objectivenotstarted, MAXBASAL_OBJECTIVE + 1), this)
+        if (!objectives[0].isStarted)
+            value.set(false, rh.gs(R.string.objectivenotstarted, 1), this)
         return value
     }
 
     override fun isClosedLoopAllowed(value: Constraint<Boolean>): Constraint<Boolean> {
-        if (!objectives[MAXIOB_ZERO_CL_OBJECTIVE].isStarted)
-            value.set(false, rh.gs(R.string.objectivenotstarted, MAXIOB_ZERO_CL_OBJECTIVE + 1), this)
+        if (!objectives[0].isStarted)
+            value.set(false, rh.gs(R.string.objectivenotstarted, 1), this)
         return value
     }
 
     override fun isAutosensModeEnabled(value: Constraint<Boolean>): Constraint<Boolean> {
-        if (!objectives[AUTOSENS_OBJECTIVE].isStarted)
-            value.set(false, rh.gs(R.string.objectivenotstarted, AUTOSENS_OBJECTIVE + 1), this)
+        if (!objectives[0].isStarted)
+            value.set(false, rh.gs(R.string.objectivenotstarted, 1), this)
         return value
     }
 
     override fun isSMBModeEnabled(value: Constraint<Boolean>): Constraint<Boolean> {
-        if (!objectives[SMB_OBJECTIVE].isStarted)
-            value.set(false, rh.gs(R.string.objectivenotstarted, SMB_OBJECTIVE + 1), this)
+        if (!objectives[0].isStarted)
+            value.set(false, rh.gs(R.string.objectivenotstarted, 1), this)
         return value
     }
 
@@ -134,8 +125,8 @@ class ObjectivesPlugin @Inject constructor(
     }
 
     override fun isAutomationEnabled(value: Constraint<Boolean>): Constraint<Boolean> {
-        if (!objectives[AUTO_OBJECTIVE].isStarted)
-            value.set(false, rh.gs(R.string.objectivenotstarted, AUTO_OBJECTIVE + 1), this)
+        if (!objectives[0].isStarted)
+            value.set(false, rh.gs(R.string.objectivenotstarted, 1), this)
         return value
     }
 
