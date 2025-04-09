@@ -14,6 +14,7 @@ import app.aaps.plugins.constraints.objectives.objectives.Objective5
 import app.aaps.plugins.constraints.objectives.objectives.Objective6
 import app.aaps.plugins.constraints.objectives.objectives.Objective7
 import app.aaps.plugins.constraints.objectives.objectives.Objective9
+import app.aaps.plugins.constraints.objectives.objectives.SimpleExamObjective
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -36,4 +37,5 @@ abstract class ObjectivesModule {
     @ContributesAndroidInjector abstract fun objective7Injector(): Objective7
     @ContributesAndroidInjector abstract fun objective9Injector(): Objective9
     @ContributesAndroidInjector abstract fun objective10Injector(): Objective10
+    @ContributesAndroidInjector abstract fun simpleExamObjectiveInjector(): SimpleExamObjective
 }
