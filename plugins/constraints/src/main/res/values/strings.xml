@@ -69,12 +69,6 @@
     <string name="objectives_previous_button">Prev</string>
     <string name="objectives_button_unfinish">Reset finished state</string>
     <string name="objectives_button_unstart">Reset started state</string>
-    <string name="objectives_simple_exam_objective">Simple Exam</string>
-    <string name="objectives_simple_exam_gate">Answer one simple question to unlock all features</string>
-    <string name="objectives_simple_exam_label">Question</string>
-    <string name="objectives_simple_exam_question">Do you understand the risks and responsibilities of using an automated insulin delivery system?</string>
-    <string name="objectives_simple_exam_yes">Yes, I understand</string>
-    <string name="objectives_simple_exam_no">No, I need more information</string>
-    <string name="objectives_simple_exam_learned">You have acknowledged understanding the risks and responsibilities of using an automated insulin delivery system.</string>
+
 
 </resources>
