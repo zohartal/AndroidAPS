@@ -11,42 +11,16 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp">
 
-        <TextView
-            android:id="@+id/exam_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Name" />
-
-        <TextView
-            android:id="@+id/exam_question"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/exam_name"
-            tools:text="Question" />
-
-        <TextView
-            android:id="@+id/exam_hint"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/objectives_hint"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/exam_question" />
-
         <LinearLayout
             android:id="@+id/exam_options"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@+id/exam_hint" />
+            app:layout_constraintTop_toBottomOf="@+id/exam_hint"
+            tools:layout_editor_absoluteX="3dp">
+
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/exam_hints"
@@ -55,48 +29,8 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="10dp"
             android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@+id/exam_options" />
-
-        <TextView
-            android:id="@+id/exam_disabled_to"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textColor="?attr/objectivesDisabledTextColor"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/exam_hints"
-            tools:text="Disabled until:" />
-
-        <LinearLayout
-            android:id="@+id/navigation_buttons"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/exam_disabled_to">
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/back_button"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/back" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/next_unanswered_button"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/next_unanswered" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/next_button"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/next" />
-        </LinearLayout>
+            app:layout_constraintTop_toBottomOf="@+id/exam_options"
+            tools:layout_editor_absoluteX="3dp" />
 
         <LinearLayout
             android:id="@+id/buttons"
@@ -106,7 +40,7 @@
             android:background="?attr/objectivesBackgroundColor"
             android:orientation="horizontal"
             android:padding="4dp"
-            app:layout_constraintTop_toBottomOf="@+id/navigation_buttons">
+            app:layout_constraintTop_toBottomOf="@+id/exam_disabled_to">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/exam_reset"
@@ -134,7 +68,89 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/objectives_button_verify" />
+
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/exam_question"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/exam_name"
+            tools:text="Question" />
+
+        <TextView
+            android:id="@+id/exam_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/objectives_hint"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/exam_question" />
+
+        <TextView
+            android:id="@+id/exam_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Name" />
+
+        <TextView
+            android:id="@+id/exam_disabled_to"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="?attr/objectivesDisabledTextColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/exam_hints"
+            tools:text="Disabled until:" />
+
+        <LinearLayout
+            android:id="@+id/navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:background="?attr/objectivesBackgroundColor"
+            android:orientation="horizontal"
+            android:padding="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttons">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/back_button"
+                style="@style/OkCancelButton.Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/objectives_previous_button" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/next_button"
+                style="@style/OkCancelButton.Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/objectives_next_button" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/next_unanswered_button"
+                style="@style/OkCancelButton.Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/unfinshed_button" />
+
+        </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

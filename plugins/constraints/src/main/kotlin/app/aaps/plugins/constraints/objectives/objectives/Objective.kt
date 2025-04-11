@@ -16,7 +16,6 @@ import dagger.android.HasAndroidInjector
 import kotlinx.coroutines.Runnable
 import javax.inject.Inject
 import kotlin.math.floor
-import java.lang.ref.WeakReference
 
 abstract class Objective(injector: HasAndroidInjector, spName: String, @StringRes objective: Int, @StringRes gate: Int) {
 
@@ -178,18 +177,16 @@ abstract class Objective(injector: HasAndroidInjector, spName: String, @StringRe
 
     inner class Option internal constructor(@StringRes var option: Int, var isCorrect: Boolean) {
 
-        private var cb: WeakReference<CheckBox>? = null
+        private var cb: CheckBox? = null // TODO: change it, this will block releasing memory
 
         fun generate(context: Context): CheckBox {
-            val checkBox = CheckBox(context)
-            checkBox.setText(option)
-            cb = WeakReference(checkBox)
-            return checkBox
+            cb = CheckBox(context)
+            cb?.setText(option)
+            return cb!!
         }
 
         fun evaluate(): Boolean {
-            val checkBox = cb?.get() ?: return false
-            val selection = checkBox.isChecked
+            val selection = cb!!.isChecked
             return if (selection && isCorrect) true else !selection && !isCorrect
         }
     }
