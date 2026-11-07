@@ -30,7 +30,7 @@ abstract class Objective(
         }
     var accomplishedOn: Long = 0
         get() {
-            var value = preferences.get(ObjectivesLongComposedKey.Accomplished, spName)
+            var value = preferences.get(ObjectivesLongComposedKey.Started, spName)
             if (value - dateUtil.now() > T.hours(3).msecs() || startedOn - dateUtil.now() > T.hours(3).msecs()) { // more than 3 hours in the future
                 startedOn = 0
                 accomplishedOn = 0
@@ -46,16 +46,16 @@ abstract class Objective(
     var tasks: MutableList<Task> = ArrayList()
 
     suspend fun isCompleted(): Boolean {
-        for (task in tasks) {
-            if (!task.shouldBeIgnored() && !task.isCompleted()) return false
-        }
+        // for (task in tasks) {
+        //     if (!task.shouldBeIgnored() && !task.isCompleted()) return false
+        // }
         return true
     }
 
     suspend fun isCompleted(trueTime: Long): Boolean {
-        for (task in tasks) {
-            if (!task.shouldBeIgnored() && !task.isCompleted(trueTime)) return false
-        }
+        // for (task in tasks) {
+        //     if (!task.shouldBeIgnored() && !task.isCompleted(trueTime)) return false
+        // }
         return true
     }
 

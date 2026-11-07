@@ -4,13 +4,13 @@ import app.aaps.core.data.plugin.PluginType
 import app.aaps.core.interfaces.configuration.Config
 import app.aaps.core.interfaces.constraints.Constraint
 import app.aaps.core.interfaces.constraints.Objectives
-import app.aaps.core.interfaces.constraints.Objectives.Companion.AUTOSENS_OBJECTIVE
-import app.aaps.core.interfaces.constraints.Objectives.Companion.AUTO_OBJECTIVE
-import app.aaps.core.interfaces.constraints.Objectives.Companion.CLOSED_LOOP_OBJECTIVE
-import app.aaps.core.interfaces.constraints.Objectives.Companion.EXAM_OBJECTIVE
-import app.aaps.core.interfaces.constraints.Objectives.Companion.FIRST_OBJECTIVE
-import app.aaps.core.interfaces.constraints.Objectives.Companion.LGS_OBJECTIVE
-import app.aaps.core.interfaces.constraints.Objectives.Companion.SMB_OBJECTIVE
+// import app.aaps.core.interfaces.constraints.Objectives.Companion.AUTOSENS_OBJECTIVE
+// import app.aaps.core.interfaces.constraints.Objectives.Companion.AUTO_OBJECTIVE
+// import app.aaps.core.interfaces.constraints.Objectives.Companion.CLOSED_LOOP_OBJECTIVE
+// import app.aaps.core.interfaces.constraints.Objectives.Companion.EXAM_OBJECTIVE
+// import app.aaps.core.interfaces.constraints.Objectives.Companion.FIRST_OBJECTIVE
+// import app.aaps.core.interfaces.constraints.Objectives.Companion.LGS_OBJECTIVE
+// import app.aaps.core.interfaces.constraints.Objectives.Companion.SMB_OBJECTIVE
 import app.aaps.core.interfaces.constraints.PluginConstraints
 import app.aaps.core.interfaces.di.APS
 import app.aaps.core.interfaces.logging.AAPSLogger
@@ -84,9 +84,9 @@ class ObjectivesPlugin(
 
     fun allPriorAccomplished(position: Int): Boolean {
         var accomplished = true
-        for (i in 0 until position) {
-            accomplished = accomplished && objectives[i].isAccomplished
-        }
+        // for (i in 0 until position) {
+        //     accomplished = accomplished && objectives[i].isAccomplished
+        // }
         return accomplished
     }
 
@@ -94,64 +94,46 @@ class ObjectivesPlugin(
      * Constraints interface
      */
     override fun isLoopInvocationAllowed(value: Constraint<Boolean>): Constraint<Boolean> {
-        // Check if initialized
-        if (objectives.isEmpty()) return value
-        if (!objectives[FIRST_OBJECTIVE].isStarted)
-            value.set(false, rh.gs(ConstraintsStrings.objectivenotstarted, FIRST_OBJECTIVE + 1), this)
+        value.set(true)
         return value
     }
 
     override fun isLgsForced(value: Constraint<Boolean>): Constraint<Boolean> {
         // Check if initialized
-        if (objectives.isEmpty()) return value
-        if (objectives[LGS_OBJECTIVE].isStarted && !objectives[LGS_OBJECTIVE].isAccomplished)
-            value.set(true, rh.gs(ConstraintsStrings.objectivenotfinished, LGS_OBJECTIVE + 1), this)
+        // if (objectives.isEmpty()) return value
+        // if (objectives[LGS_OBJECTIVE].isStarted && !objectives[LGS_OBJECTIVE].isAccomplished)
+        //     value.set(true, rh.gs(ConstraintsStrings.objectivenotfinished, LGS_OBJECTIVE + 1), this)
         return value
     }
 
     override suspend fun isClosedLoopAllowed(value: Constraint<Boolean>): Constraint<Boolean> {
-        // Check if initialized
-        if (objectives.isEmpty()) return value
-        if (!objectives[CLOSED_LOOP_OBJECTIVE].isStarted)
-            value.set(false, rh.gs(ConstraintsStrings.objectivenotstarted, CLOSED_LOOP_OBJECTIVE + 1), this)
+        value.set(true)
         return value
     }
 
     override fun isAutosensModeEnabled(value: Constraint<Boolean>): Constraint<Boolean> {
-        // Check if initialized
-        if (objectives.isEmpty()) return value
-        if (!objectives[AUTOSENS_OBJECTIVE].isStarted)
-            value.set(false, rh.gs(ConstraintsStrings.objectivenotstarted, AUTOSENS_OBJECTIVE + 1), this)
+        value.set(true)
         return value
     }
 
     override suspend fun isSMBModeEnabled(value: Constraint<Boolean>): Constraint<Boolean> {
-        // Check if initialized
-        if (objectives.isEmpty()) return value
-        if (!objectives[SMB_OBJECTIVE].isStarted)
-            value.set(false, rh.gs(ConstraintsStrings.objectivenotstarted, SMB_OBJECTIVE + 1), this)
+        value.set(true)
         return value
     }
 
     override fun isAutomationEnabled(value: Constraint<Boolean>): Constraint<Boolean> {
-        // Check if initialized
-        if (objectives.isEmpty()) return value
-        if (!objectives[AUTO_OBJECTIVE].isStarted)
-            value.set(false, rh.gs(ConstraintsStrings.objectivenotstarted, AUTO_OBJECTIVE + 1), this)
+        value.set(true)
         return value
     }
 
     override fun isConcentrationEnabled(value: Constraint<Boolean>): Constraint<Boolean> {
-        if (objectives.isEmpty()) return value
-        if (!objectives[EXAM_OBJECTIVE].isAccomplished) {
-            value.set(false, rh.gs(ConstraintsStrings.objectivenotfinished, EXAM_OBJECTIVE + 1), this)
-        }
+        value.set(true)
         return value
     }
 
     override val size: Int get() = objectives.size
-    override val accomplishedCount: Int get() = objectives.count { it.isAccomplished }
+    override val accomplishedCount: Int get() = objectives.size
 
-    override fun isAccomplished(index: Int) = objectives[index].isAccomplished
-    override fun isStarted(index: Int): Boolean = objectives[index].isStarted
+    override fun isAccomplished(index: Int) = true
+    override fun isStarted(index: Int): Boolean = true
 }
