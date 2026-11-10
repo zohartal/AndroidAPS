@@ -269,7 +269,7 @@ compose.desktop {
             packageName = desktopPackageName
             // jpackage demands a plain numeric version - an MSI rejects anything else - so the
             // `-dev-b-kmp` style suffix that Versions.appVersion carries is trimmed off here.
-            packageVersion = Versions.appVersion.substringBefore('-')
+            packageVersion = GenerateVersionXcconfigTask.marketingVersionOf(Versions.appVersion)
             // The packaged app carries a trimmed JRE with only the modules the plugin can detect. JNA
             // needs sun.misc.Unsafe from jdk.unsupported, which it cannot detect; without it every OS
             // key store fails to load and the keys fall back to plain files.
